@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { searchCast, searchShows } from '../api/tvmaze';
 import SearchForm from '../components/searchForm';
+import ShowGrid from '../components/shows/showGrid';
+import ActorsGrid from '../components/actors/actorsGrid';
 
 function Home() {
   const [data, setData] = useState(null);
@@ -19,21 +21,15 @@ function Home() {
   };
 
   const renderData = () => {
+    console.log(data);
     if (!data || data.length === 0) {
       return <p>No results found.</p>;
     }
-
-    return data[0].show
-      ? data.map(show => (
-          <div key={show.show.id}>
-            <h3>{show.show.name}</h3>
-          </div>
-        ))
-      : data.map(cast => (
-          <div key={cast.person.id}>
-            <h3>{cast.person.name}</h3>
-          </div>
-        ));
+    return data[0].show ? (
+      <ShowGrid shows={data} />
+    ) : (
+      <ActorsGrid actors={data} />
+    );
   };
 
   return (
