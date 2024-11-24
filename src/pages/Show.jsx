@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getShowData } from '../api/tvmaze';
+import { useShowById } from '../hooks/useShowById';
+
 function Show() {
   const params = useParams();
-  useEffect(() => {
-    console.log(params);
-    const fetchData = async () => {
-      const result = await getShowData(params.showId);
-      console.log(result);
-    };
-    fetchData();
-  });
-  return <div>{params.showId}</div>;
+  const { showData, showError } = useShowById(params.showId);
+
+  return (
+    <div>
+      {showError && <h1>showError.message</h1>}
+      {params.showId}
+    </div>
+  );
 }
 
 export default Show;
