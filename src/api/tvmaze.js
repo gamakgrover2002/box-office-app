@@ -13,3 +13,7 @@ export const searchShows = async query => {
 export const searchCast = query => {
   return apiGet(`/search/people?q=${query}`);
 };
+
+export const getShowData = showId => {
+  return apiGet(`/shows/${showId}`);
+};
