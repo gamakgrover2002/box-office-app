@@ -14,13 +14,11 @@ function Home() {
           : await searchCast(searchStr);
       setData(result);
     } catch (error) {
-      console.error('Error fetching data:', error);
       setData(null);
     }
   };
 
   const renderData = () => {
-    console.log(data);
     if (!data || data.length === 0) {
       return <p>No results found.</p>;
     }

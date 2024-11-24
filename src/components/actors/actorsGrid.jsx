@@ -10,6 +10,12 @@ function ActorsGrid({ actors }) {
             <ActorsCard
               name={actor.person.name}
               image={actor.person.image ? actor.person.image.medium : noImage}
+              deathDate={
+                actor.person.deathday ? actor.person.deathday : 'Alive'
+              }
+              birthDate={
+                actor.person.birthday ? actor.person.birthday : 'Not Available'
+              }
             />
             <div>
               <Link to="/">Read More</Link>

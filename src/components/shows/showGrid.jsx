@@ -9,6 +9,7 @@ function ShowGrid({ shows }) {
             name={show.show.name}
             image={show.show.image.original}
             summary={show.show.summary}
+            id={show.show.id}
           />
         </div>
       ))}
