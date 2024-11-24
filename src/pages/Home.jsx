@@ -6,7 +6,6 @@ import ActorsGrid from '../components/actors/actorsGrid';
 
 function Home() {
   const [data, setData] = useState(null);
-
   const OnSearch = async ({ option, searchStr }) => {
     try {
       const result =
