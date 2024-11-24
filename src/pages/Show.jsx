@@ -1,14 +1,25 @@
 import { useParams } from 'react-router-dom';
-import { useShowById } from '../hooks/useShowById';
+import { getShowData } from '../api/tvmaze';
+import { useQuery } from '@tanstack/react-query';
 
 function Show() {
-  const params = useParams();
-  const { showData, showError } = useShowById(params.showId);
+  const { showId } = useParams(); // Destructure showId from params
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['show', showId], // Add showId to differentiate queries
+    queryFn: async () => {
+      return await getShowData(showId); // Return the result of the API call
+    },
+    staleTime: 1000 * 60 * 5,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
-      {showError && <h1>showError.message</h1>}
-      {params.showId}
+      <h1>Show Details</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre> {/* Render data as JSON */}
     </div>
   );
 }
