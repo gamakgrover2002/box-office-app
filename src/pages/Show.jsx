@@ -15,17 +15,27 @@ function Show() {
     staleTime: 1000 * 60 * 5,
   });
   console.log(data);
+  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+
+  const { name, image, rating, summary, genres, status, network, premiered } =
+    data || {};
+
   return (
     <div>
       <h1>Show Details</h1>
-      {error && <div>{error.message}</div>}
-      {isLoading && <div>Loading...</div>}
-      <div>
-        <ShowMainDetails />
-        <div>
-          <ShowDetails />
-        </div>
-      </div>
+      <ShowMainDetails
+        name={name || 'NA'}
+        image={image?.original || null}
+        rating={rating?.average || null}
+        summary={summary || null}
+        genre={genres || []}
+      />
+      <ShowDetails
+        status={status || null}
+        network={network || null}
+        premiered={premiered || null}
+      />
     </div>
   );
 }
