@@ -3,22 +3,38 @@ import { searchCast, searchShows } from '../api/tvmaze';
 import SearchForm from '../components/searchForm';
 import ShowGrid from '../components/shows/showGrid';
 import ActorsGrid from '../components/actors/actorsGrid';
+import { useQuery } from '@tanstack/react-query';
 
 function Home() {
-  const [data, setData] = useState(null);
-  const OnSearch = async ({ option, searchStr }) => {
-    try {
-      const result =
-        option === 'shows'
-          ? await searchShows(searchStr)
-          : await searchCast(searchStr);
-      setData(result);
-    } catch (error) {
-      setData(null);
+  const [option, setOption] = useState(null);
+  const [searchStr, setSearchStr] = useState('');
+
+  const { data, isLoading, isError } = useQuery(
+    ['search', option, searchStr],
+    () => {
+      if (option === 'shows') {
+        return searchShows(searchStr);
+      } else if (option === 'cast') {
+        return searchCast(searchStr);
+      }
+    },
+    {
+      enabled: !!option && !!searchStr,
     }
+  );
+
+  const OnSearch = ({ option, searchStr }) => {
+    setOption(option);
+    setSearchStr(searchStr);
   };
 
   const renderData = () => {
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
+    if (isError) {
+      return <p>Something went wrong. Please try again.</p>;
+    }
     if (!data || data.length === 0) {
       return <p>No results found.</p>;
     }
