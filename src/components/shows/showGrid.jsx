@@ -1,8 +1,5 @@
 import ShowCard from './showCard';
-
-import { useReducer } from 'react';
-import { useEffect } from 'react';
-
+import { useStarred } from '../../lib/useStarred';
 const starShowFunction = (currentStarred, action) => {
   switch (action.type) {
     case 'Star':
@@ -13,19 +10,9 @@ const starShowFunction = (currentStarred, action) => {
       return currentStarred;
   }
 };
-const usePersistedReducer = (reducer, initialState, localKey) => {
-  const [state, dispatch] = useReducer(reducer, initialState, initial => {
-    const value = localStorage.getItem(localKey);
-    return value ? JSON.parse(value) : initial;
-  });
-  useEffect(() => {
-    localStorage.setItem(localKey, JSON.stringify(state));
-  }, [localKey, initialState, state]);
-  return [state, dispatch];
-};
 
 function ShowGrid({ shows }) {
-  const [staredShow, dispatchStarred] = usePersistedReducer(
+  const [staredShow, dispatchStarred] = useStarred(
     starShowFunction,
     [],
     'shows'

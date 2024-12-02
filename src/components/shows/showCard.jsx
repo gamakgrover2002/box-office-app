@@ -17,7 +17,7 @@ function showCard({ id, name, image, summary, onStarClick, isStarred }) {
           }}
           type="button"
         >
-          {isStarred ? 'Star' : 'No stars'}
+          {isStarred ? 'No Star' : 'Star'}
         </button>
       </div>
     </div>
