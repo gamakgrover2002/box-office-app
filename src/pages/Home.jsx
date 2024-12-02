@@ -34,6 +34,8 @@ function Home() {
     }
     if (!data) {
       return <p></p>;
+    } else if (isLoading) {
+      return <p>Loading...</p>;
     }
     return data[0].show ? (
       <ShowGrid shows={data} />
