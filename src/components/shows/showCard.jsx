@@ -1,4 +1,4 @@
-function showCard({ id, name, image, summary, onStarClick }) {
+function showCard({ id, name, image, summary, onStarClick, isStarred }) {
   const summaryStripped = summary
     ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '') + '...'
     : 'No description';
@@ -17,7 +17,7 @@ function showCard({ id, name, image, summary, onStarClick }) {
           }}
           type="button"
         >
-          Star Me
+          {isStarred ? 'Star' : 'No stars'}
         </button>
       </div>
     </div>

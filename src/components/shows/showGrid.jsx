@@ -50,6 +50,7 @@ function ShowGrid({ shows }) {
             summary={show.show.summary}
             id={show.show.id}
             onStarClick={onStarClick}
+            isStarred={staredShow.includes(show.show.id)}
           />
         </div>
       ))}
