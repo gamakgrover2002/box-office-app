@@ -3,6 +3,8 @@ import { getShowData } from '../api/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import ShowMainDetails from '../components/shows/ShowMainDetails';
 import ShowDetails from '../components/shows/ShowDetails';
+import Season from '../components/shows/Season';
+import Cast from '../components/shows/Cast';
 
 function Show() {
   const { showId } = useParams();
@@ -36,6 +38,8 @@ function Show() {
         network={network || null}
         premiered={premiered || null}
       />
+      <Season season={data._embedded.seasons || null} />
+      <Cast cast={data._embedded.cast || null} />
     </div>
   );
 }
