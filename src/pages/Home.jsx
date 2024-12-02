@@ -29,14 +29,11 @@ function Home() {
   };
 
   const renderData = () => {
-    if (isLoading) {
-      return <p>Loading...</p>;
-    }
     if (isError) {
       return <p>Something went wrong. Please try again.</p>;
     }
-    if (!data || data.length === 0) {
-      return <p>No results found.</p>;
+    if (!data) {
+      return <p></p>;
     }
     return data[0].show ? (
       <ShowGrid shows={data} />

@@ -9,7 +9,9 @@ function showCard({ id, name, image, summary }) {
       <h1>{name}</h1>
       <>{summaryStripped}</>
       <div>
-        <Link to={`/show/${id}`}>Read More</Link>{' '}
+        <a href={`/show/${id}`} target="_blank" rel="noreferrer">
+          Read More
+        </a>
         <button type="button">Star Me</button>
       </div>
     </div>

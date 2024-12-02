@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getShowData } from '../api/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import ShowMainDetails from '../components/shows/ShowMainDetails';
@@ -8,6 +8,7 @@ import Cast from '../components/shows/Cast';
 
 function Show() {
   const { showId } = useParams();
+  const navigateTo = useNavigate();
 
   const { data, error, isLoading } = useQuery({
     queryKey: ['show', showId],
@@ -23,9 +24,12 @@ function Show() {
   const { name, image, rating, summary, genres, status, network, premiered } =
     data || {};
 
+  const goBack = () => {
+    navigateTo('/');
+  };
   return (
     <div>
-      <h1>Show Details</h1>
+      <button onClick={goBack}>Go Back</button>
       <ShowMainDetails
         name={name || 'NA'}
         image={image?.original || null}
