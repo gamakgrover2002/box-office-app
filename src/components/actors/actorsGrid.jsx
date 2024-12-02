@@ -1,5 +1,5 @@
-import ActorsCard from './actorCrd';
-import noImage from '../../lib/not-found-image.png';
+import ActorsCard from './actorCard';
+
 import { Link } from 'react-router-dom';
 function ActorsGrid({ actors }) {
   return (
@@ -9,7 +9,11 @@ function ActorsGrid({ actors }) {
           <div key={actor.person.id}>
             <ActorsCard
               name={actor.person.name}
-              image={actor.person.image ? actor.person.image.medium : noImage}
+              image={
+                actor.person.image
+                  ? actor.person.image.medium
+                  : '/public/not-found-image.png'
+              }
               deathDate={
                 actor.person.deathday ? actor.person.deathday : 'Alive'
               }

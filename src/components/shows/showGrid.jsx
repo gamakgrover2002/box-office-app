@@ -1,5 +1,5 @@
 import ShowCard from './showCard';
-import noImage from '../../lib/not-found-image.png';
+
 import { useReducer } from 'react';
 import { useEffect } from 'react';
 
@@ -46,7 +46,11 @@ function ShowGrid({ shows }) {
         <div key={show.show.id}>
           <ShowCard
             name={show.show.name}
-            image={show.show.image ? show.show.image.medium : noImage}
+            image={
+              show.show.image
+                ? show.show.image.medium
+                : '/public/not-found-image.png'
+            }
             summary={show.show.summary}
             id={show.show.id}
             onStarClick={onStarClick}

@@ -1,4 +1,3 @@
-import noImage from '../../lib/not-found-image.png';
 function Cast({ cast }) {
   return (
     <div>
@@ -7,7 +6,9 @@ function Cast({ cast }) {
           <div key={index}>
             <img
               src={
-                cast.person.image.medium ? cast.person.image.medium : noImage
+                cast.person.image.medium
+                  ? cast.person.image.medium
+                  : '/not-found-image.png'
               }
               alt={cast.person.name}
             />
