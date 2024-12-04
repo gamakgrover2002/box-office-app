@@ -14,7 +14,7 @@ function Home() {
     () => {
       if (option === 'shows') {
         return searchShows(searchStr);
-      } else if (option === 'cast') {
+      } else if (option === 'actors') {
         return searchCast(searchStr);
       }
     },

@@ -1,5 +1,6 @@
 import ShowCard from './showCard';
-import { useStarred } from '../../lib/useStarred';
+import { usePersistedReducer } from '../../lib/useStarred';
+
 const starShowFunction = (currentStarred, action) => {
   switch (action.type) {
     case 'Star':
@@ -10,9 +11,8 @@ const starShowFunction = (currentStarred, action) => {
       return currentStarred;
   }
 };
-
 function ShowGrid({ shows }) {
-  const [staredShow, dispatchStarred] = useStarred(
+  const [staredShow, dispatchStarred] = usePersistedReducer(
     starShowFunction,
     [],
     'shows'
