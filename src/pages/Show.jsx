@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { getShowData } from '../api/tvmaze';
+import { getShowById } from '../api/tvmaze';
 import { useQuery } from '@tanstack/react-query';
 import ShowMainDetails from '../components/shows/ShowMainDetails';
 import ShowDetails from '../components/shows/ShowDetails';
@@ -13,7 +13,7 @@ function Show() {
   const { data, error, isLoading } = useQuery({
     queryKey: ['show', showId],
     queryFn: async () => {
-      return await getShowData(showId);
+      return await getShowById(showId);
     },
     staleTime: 1000 * 60 * 5,
   });

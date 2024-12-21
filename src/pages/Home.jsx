@@ -32,9 +32,10 @@ function Home() {
     if (isError) {
       return <p>Something went wrong. Please try again.</p>;
     }
-    if (!data) {
-      return <p></p>;
-    } else if (isLoading) {
+    if (!data || data.length === 0) {
+      return <p>No results found.</p>;
+    }
+    if (isLoading) {
       return <p>Loading...</p>;
     }
     return data[0].show ? (
