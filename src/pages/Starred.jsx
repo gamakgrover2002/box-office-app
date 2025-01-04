@@ -7,8 +7,8 @@ function Starred() {
   const [starredShow] = useStarredShow();
   const { data } = useQuery({
     queryKey: ['starredShow', starredShow],
-    queryFn: async () => {
-      return await getShowByIds(starredShow).then(result =>
+    queryFn:  async() => {
+      return  getShowByIds(starredShow).then(result =>
         result.map(show => ({ show }))
       );
     },
