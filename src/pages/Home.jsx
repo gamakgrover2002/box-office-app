@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { searchCast, searchShows } from '../api/tvmaze';
 import SearchForm from '../components/searchForm';
 import ShowGrid from '../components/shows/showGrid';
 import ActorsGrid from '../components/actors/actorsGrid';
 import { useQuery } from '@tanstack/react-query';
+import { useSearchStr } from '../lib/useSearchStr';
 
 function Home() {
   const [option, setOption] = useState(null);
-  const [searchStr, setSearchStr] = useState('');
-
+  const [searchStr,setSearchStr] = useSearchStr()
   const { data, isLoading, isError } = useQuery(
     ['search', option, searchStr],
     () => {
@@ -26,8 +26,9 @@ function Home() {
   const OnSearch = ({ option, searchStr }) => {
     setOption(option);
     setSearchStr(searchStr);
+   
   };
-
+ 
   const renderData = () => {
     if (isError) {
       return <p>Something went wrong. Please try again.</p>;
@@ -44,10 +45,16 @@ function Home() {
       <ActorsGrid actors={data} />
     );
   };
-
+  useEffect(()=>{
+    const searchStr = sessionStorage.getItem("searctStr");
+    if(searchStr){
+      setOption(null);
+      setSearchStr(searchStr);
+    }
+  },[])
   return (
     <div>
-      <SearchForm OnSearch={OnSearch} />
+      <SearchForm value={searchStr} OnSearch={OnSearch} />
       <div>{renderData()}</div>
     </div>
   );
