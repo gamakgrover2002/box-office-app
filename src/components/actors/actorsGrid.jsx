@@ -1,6 +1,5 @@
 import ActorsCard from './actorCard';
 import { FlexGrid } from '../common/FlexGrid';
-import { Link } from 'react-router-dom';
 function ActorsGrid({ actors }) {
   return (
     <FlexGrid>
