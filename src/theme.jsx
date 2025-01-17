@@ -1,6 +1,5 @@
-// theme.js
-import { ThemeProvider } from 'styled-components';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+
 const theme = {
   fontFamily: 'Roboto, sans-serif',
   mainColors: {
@@ -9,14 +8,23 @@ const theme = {
     dark: '#353535',
   },
 };
-const queryClient = new QueryClient();
 
-function GlobalTheme({ children }) {
-  return <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-    {children}
-    </QueryClientProvider>
-    </ThemeProvider>;
-}
+const GlobalStyles = createGlobalStyle`
+  body {
+    font-family: ${({ theme }) => theme.fontFamily};
+    font-size: 18px;
+    margin: 0;
+    padding-top: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+`;
 
-export { GlobalTheme };
+export const GlobalTheme = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {children}
+    </ThemeProvider>
+  );
+};
