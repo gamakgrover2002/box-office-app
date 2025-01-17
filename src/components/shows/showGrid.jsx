@@ -1,6 +1,6 @@
 import ShowCard from './showCard';
 import { usePersistedReducer } from '../../lib/useStarred';
-
+import {FlexGrid} from '../common/FlexGrid';
 const starShowFunction = (currentStarred, action) => {
   switch (action.type) {
     case 'Star':
@@ -28,7 +28,7 @@ function ShowGrid({ shows }) {
     console.log(staredShow);
   };
   return (
-    <div>
+    <FlexGrid>
       {shows.map(show => (
         <div key={show.show.id}>
           <ShowCard
@@ -45,7 +45,7 @@ function ShowGrid({ shows }) {
           />
         </div>
       ))}
-    </div>
+    </FlexGrid>
   );
 }
 

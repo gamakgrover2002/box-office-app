@@ -1,9 +1,9 @@
 import ActorsCard from './actorCard';
-
+import { FlexGrid } from '../common/FlexGrid';
 import { Link } from 'react-router-dom';
 function ActorsGrid({ actors }) {
   return (
-    <div>
+    <FlexGrid>
       {actors.map(actor => {
         return (
           <div key={actor.person.id}>
@@ -22,13 +22,11 @@ function ActorsGrid({ actors }) {
               }
             />
             <div>
-              <Link to="/">Read More</Link>
-              <button type="button">Star Me</button>
             </div>
           </div>
         );
       })}
-    </div>
+    </FlexGrid>
   );
 }
 
