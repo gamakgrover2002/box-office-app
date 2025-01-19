@@ -50,7 +50,7 @@ function Show() {
       />
       </InfoBlock>
       <InfoBlock>
-      <Season season={data._embedded.seasons || null} />
+      <Season seasons={data._embedded.seasons || []} />
       </InfoBlock>
       <InfoBlock>
       <Cast cast={data._embedded.cast || null} />
