@@ -1,8 +1,8 @@
 {
   "name": "box-office",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
-  "homepage": "https://gamakgrover2002.github.io/box-office-app",
   "dependencies": {
     "@tanstack/react-query": "^4.36.1",
     "@testing-library/jest-dom": "^5.17.0",
