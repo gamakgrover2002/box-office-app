@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const StarIcon = styled.div`
+export const StarIcon = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'active',
+})`
   display: inline-block;
   width: 18px;
   height: 18px;

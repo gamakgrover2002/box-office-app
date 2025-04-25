@@ -52,7 +52,7 @@ function Home() {
       setOption(null);
       setSearchStr(searchStr);
     }
-  },[])
+  },[setSearchStr])
   return (
     <div>
       <SearchForm value={searchStr} OnSearch={OnSearch} />
